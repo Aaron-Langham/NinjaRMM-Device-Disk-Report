@@ -3,7 +3,7 @@ Script to generate a report on all the devices in a given group in NinjaRMM
 
 Takes a Group ID from Ninja RMM and uses the API to collect the disk data from every machine in the group and formats it into HTML and sends it as an email.
 
-This Script can be run on anything that has access to the internet and can run PowerShell, e.g. Desktop, Server, Linux, Docker Container, Azure PowerApp, etc
+This Script can be run on anything that has access to the internet and can run PowerShell, e.g. Desktop, Server, Linux, Docker Container, Azure FunctionApp, etc
 
 Getting API Key:
   Go to NinjaRMM/NinjaOne portal > Administration > Apps > API > Client App IDs
