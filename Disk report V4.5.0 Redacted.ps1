@@ -6,7 +6,7 @@ $ClientSecret = "" #String
 $GroupID = 0 #Intiger
 
 
-# Created variables to be used for mailing
+# Variables to be used for mailing
 $userName = "" #String - SMTP Username
 $SMTPPassword = "" #String - SMTP Passsword
 $password = ConvertTo-SecureString '$SMTPPassword' -AsPlainText -Force
