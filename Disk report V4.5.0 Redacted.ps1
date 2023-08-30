@@ -1,6 +1,22 @@
-## Generates a Disk Report for all the devices in the "Disk Report" Group, whitch should be any device witht the Role of "Windows Server" or "Windows Desktop Server"
+## Generates a Disk Report for all the devices in the "Disk Report" Group, which should be any device with the Role of "Windows Server" or "Windows Desktop Server"
 
-#Gets the API token and creates the headers for subsiquent calls
+# Varibles From Ninja
+$ClientID = "" #String
+$ClientSecret = "" #String
+$GroupID = 0 #Intiger
+
+
+# Created variables to be used for mailing
+$userName = "" #String - SMTP Username
+$SMTPPassword = "" #String - SMTP Passsword
+$password = ConvertTo-SecureString '$SMTPPassword' -AsPlainText -Force
+$smtpCred = New-Object System.Management.Automation.PSCredential ($userName, $password)
+$ToAddress = "" #String - SMTP To Address
+$FromAddress = "" #String - SMTP From Address
+$SmtpServer = "" #String - SMTP Server Address
+$SmtpPort = "" #String - SMTP Server Port
+
+#Gets the API token and creates the headers for subsequent calls
 $body = @{
     grant_type = "client_credentials"
     client_id = "$ClientID"
@@ -48,29 +64,29 @@ class DiskReport{
 
 # Calls Ninja's API and assigns all the device IDs of the devices in the "Disk Report" Group to an array
 $deviceIDs = @()
-$deviceIDs = Invoke-RestMethod 'https://eu.ninjarmm.com/api/v2/group/55/device-ids' -Method 'GET' -Headers $headers
+$deviceIDs = Invoke-RestMethod "https://eu.ninjarmm.com/api/v2/group/$GroupID/device-ids" -Method 'GET' -Headers $headers
 
 # Starts a loop to go through every Device ID and put the output into an Array
 $fullDiskReport = ForEach ($ID in $deviceIDs){
-    # Calls API to get details for the device and assign to varibles
+    # Calls API to get details for the device and assign to variables
     $device = Invoke-RestMethod "https://eu.ninjarmm.com/api/v2/device/$ID" -Method 'GET' -Headers $headers
     $hostname = $device.systemName
     $volumes = $device.volumes
     $orgID = $device.organizationId
     $locID = $device.locationId    
     
-    # Calls API to get the Organization the Device Belongs to and assigns to a varible
+    # Calls API to get the Organization the Device Belongs to and assigns to a variable
     $organization = Invoke-RestMethod -Uri "https://eu.ninjarmm.com/api/v2/organization/$orgID" -Method GET -Headers $headers
     $orgName = $organization.name
 
-    # Calls API to get the All Locations in the Organization, find the Location the Device is in and assign it to a varible
+    # Calls API to get the All Locations in the Organization, find the Location the Device is in and assign it to a variable
     $locations = Invoke-RestMethod -Uri "https://eu.ninjarmm.com/api/v2/organization/$orgID/locations" -Method GET -Headers $headers
     ForEach ($location in $locations){if ($location.id -eq $locID){$locName = $location.name}}
 
-    # Starts a loop to go through every Volume in the device, Only looking at Local Disks and put the output into an Array
+    # Starts a loop to go through every Volume in the device, Only looking at Local Disks and putting the output into an Array
     $DeviceDiskReport = ForEach ($volume in $volumes){
         if ($volume.deviceType -eq "Local Disk"){
-            # Assigns values to varibles and formats them
+            # Assigns values to variables and formats them
             $name = $volume.name
             $capacity = [math]::Round(($volume.capacity / 1GB),2)
             $free = [math]::Round(($volume.freeSpace / 1GB),2)
@@ -117,7 +133,7 @@ $filteredDiskReport = ForEach ($DeviceReport3 in $fullDiskReport){
     if ($NeedsInvestigation -eq $true){$DeviceReport3}
 }
 
-# Bit of logic to format the child objects correctly with the parent object, but I dont remmber why or how it works, I just know it works
+# Bit of logic to format the child objects correctly with the parent object, but I don't remember why or how it works, I just know it works
 # Just joking I do, but its hard to explain, So: For each Object in the report it will output the Device Data then, For each disk within the device, get the disk data and add it to an array, sort the array then output it
 
 $fullDiskReport1 = ForEach ($DeviceReport1 in $fullDiskReport){
@@ -155,16 +171,9 @@ $fullDiskReport2 = "./fullDiskReport.html"
 $filteredDiskReport2 = "./filteredDiskReport.html"
 $doubleFilteredDiskReport1 = "./doubleFilteredDiskReport.html"
 
-# Created varibles to be used for mailing
-$userName = 'ninja@disconsulting.co.uk'
-$password = ConvertTo-SecureString '$SMTPPassword' -AsPlainText -Force
-$smtpCred = New-Object System.Management.Automation.PSCredential ($userName, $password)
-$ToAddress = 'ninja@disconsulting.co.uk'
-$FromAddress = 'ninja@disconsulting.co.uk'
+# Created variables to be used for mailing
 $Subject = 'Server Disk Report'
 $Body = 'Find attached Disk Reports'
-$SmtpServer = 'smtp.antispamcloud.com'
-$SmtpPort = '587'
 $attachments = $fullDiskReport2, $filteredDiskReport2, $doubleFilteredDiskReport1
 
 $mailparam = @{
