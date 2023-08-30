@@ -1,10 +1,9 @@
 ## Generates a Disk Report for all the devices in the "Disk Report" Group, which should be any device with the Role of "Windows Server" or "Windows Desktop Server"
 
-# Varibles From Ninja
+# Variables From Ninja
 $ClientID = "" #String
 $ClientSecret = "" #String
-$GroupID = 0 #Intiger
-
+$GroupID = 0 #Integer
 
 # Variables to be used for mailing
 $userName = "" #String - SMTP Username
