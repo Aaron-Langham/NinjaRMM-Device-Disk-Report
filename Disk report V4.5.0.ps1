@@ -1,4 +1,4 @@
-## Generates a Disk Report for all the devices in the "Disk Report" Group, which should be any device with the Role of "Windows Server" or "Windows Desktop Server"
+## Generates a Disk Report for all the devices in the "Disk Report" Group, which should be any device in a specific group
 
 # Variables From Ninja
 $ClientID = "" #String
