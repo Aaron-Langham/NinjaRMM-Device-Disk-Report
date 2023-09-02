@@ -1,4 +1,4 @@
-## Generates a Disk Report for all the devices in the "Disk Report" Group, which should be any device in a specific group
+## Generates a Disk Report for all the devices in a specific group.
 
 # Variables From Ninja
 $ClientID = "" #String
