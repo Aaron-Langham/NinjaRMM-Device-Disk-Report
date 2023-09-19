@@ -68,7 +68,7 @@ V5:
       @{
         'Microsoft.Graph' = '2.*'
       }
-    It will through an error saying there isn't enough space to install the module, but it still works. (for me at least, ¯\\_(ツ)_/¯ )
+    It will through an error saying there isn't enough space to install the module, but it still works. (for me at least, ¯\\\_(ツ)\_/¯ )
 
 
 
