@@ -1,3 +1,5 @@
+Install-Module -Name Microsoft.Graph -Force
+
 ## Generates a Disk Report for all the devices in a specific group.
 
 # Variables From Ninja
