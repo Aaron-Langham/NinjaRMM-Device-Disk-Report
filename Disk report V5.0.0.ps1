@@ -14,16 +14,6 @@ $ToAddress = ""
 $Subject = "Server Disk Report"
 $Body = "Find attached Disk Reports"
 
-
-#$userName = "" #String - SMTP Username
-#$SMTPPassword = "" #String - SMTP Passsword
-#$password = ConvertTo-SecureString '$SMTPPassword' -AsPlainText -Force
-#$smtpCred = New-Object System.Management.Automation.PSCredential ($userName, $password)
-#$ToAddress = "" #String - SMTP To Address
-#$FromAddress = "" #String - SMTP From Address
-#$SmtpServer = "" #String - SMTP Server Address
-#$SmtpPort = "" #String - SMTP Server Port
-
 #Gets the API token and creates the headers for subsequent calls
 $body = @{
     grant_type = "client_credentials"
@@ -236,25 +226,3 @@ $params = @{
 
 Send-MgUserMail -UserId $MgUserID -BodyParameter $params
 Disconnect-MgGraph
-
-
-
-
-
-
-#$Subject = 'Server Disk Report'
-#$Body = 'Find attached Disk Reports'
-#$attachments = $fullDiskReport2, $filteredDiskReport2, $doubleFilteredDiskReport1
-
-#$mailparam = @{
-#	To = $ToAddress
-#	From = $FromAddress
-#	Subject = $Subject
-#	Body = $Body
-#	SmtpServer = $SmtpServer
-#	Port = $smtpPort
-#	Credential = $smtpCred
-#    Attachments = $attachments
-#}
-
-#send-MailMessage @mailparam -UseSsl
