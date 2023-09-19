@@ -10,7 +10,9 @@ $MgTenantID = ""
 $MgUserID = ""
 $MgClientID = ""
 $MgValue = ""
-
+$ToAddress = ""
+$Subject = "Server Disk Report"
+$Body = "Find attached Disk Reports"
 
 
 #$userName = "" #String - SMTP Username
@@ -196,15 +198,15 @@ $attachmentname3 = (Get-Item -Path $attachmentpath3).Name
 
 $params = @{
     Message = @{
-        Subject = "Server Disk Report"
+        Subject = $Subject
         Body = @{
             ContentType = "Text"
-            Content = "Find attached Disk Reports"
+            Content = $Body
         }
         ToRecipients = @(
             @{
                 EmailAddress = @{
-                    Address = "ninja@disconsulting.co.uk"
+                    Address = $ToAddress
                 }
             }
         )
