@@ -12,7 +12,6 @@ $MgClientID = ""
 $MgValue = ""
 $ToAddress = ""
 $Subject = "Server Disk Report"
-$Body = "Find attached Disk Reports"
 
 #Gets the API token and creates the headers for subsequent calls
 $body = @{
@@ -191,7 +190,7 @@ $params = @{
         Subject = $Subject
         Body = @{
             ContentType = "Text"
-            Content = $Body
+            Content = "Find attached Disk Reports"
         }
         ToRecipients = @(
             @{
