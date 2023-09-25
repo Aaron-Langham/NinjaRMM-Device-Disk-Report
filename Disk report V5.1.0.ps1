@@ -1,6 +1,6 @@
 ## Generates a Disk Report for all the devices in a specific group.
 
-#Enter the percentage threshold for diskes to be flagged.
+#Enter the percentage threshold for disks to be flagged.
 $threshold = 94 #Integer
 
 # Variables From Ninja
