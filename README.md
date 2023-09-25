@@ -67,6 +67,9 @@ V5:
     And the requirements.psd1 file:
       @{
         'Microsoft.Graph' = '2.*'
+        'Microsoft.Graph.Authentication' = '2.*'
+        'Microsoft.Graph.Mail' = '2.*'
+        'Microsoft.Graph.Users.Actions' = '2.*'
       }
     It will through an error saying there isn't enough space to install the module, but it still works. (for me at least)
 
