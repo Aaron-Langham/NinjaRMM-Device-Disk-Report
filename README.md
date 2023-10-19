@@ -33,7 +33,7 @@ V4.5:
     SMTP server address
     SMPT port
 
-V5:
+V5+:
   Go to the Azure portal - App registrations > New Registration.
     Name: Microsoft Graph PowerShell – Mail
     For Supported account types, select Accounts in this organization directory. 
