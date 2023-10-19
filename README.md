@@ -5,6 +5,11 @@ Takes a Group ID from Ninja RMM and uses the API to collect the disk data from e
 
 This Script can be run on anything that has access to the internet and can run PowerShell, e.g. Desktop, Server, Linux, Docker Container, Azure FunctionApp, etc
 
+V4: Sends email via SMTP
+V5: Sends email via Microsoft 365 (only supports email from that)
+V6: Same as V5 but now with threading so now it's 'up to' 6x faster (statistics gathered in my grand total of 1 test)
+
+
 Getting API Key:
   Go to NinjaRMM/NinjaOne portal > Administration > Apps > API > Client App IDs
   Add
@@ -66,7 +71,6 @@ V5+:
       "Enabled": true
     And the requirements.psd1 file:
       @{
-        'Microsoft.Graph' = '2.\*'
         'Microsoft.Graph.Authentication' = '2.\*'
         'Microsoft.Graph.Mail' = '2.\*'
         'Microsoft.Graph.Users.Actions' = '2.\*'
