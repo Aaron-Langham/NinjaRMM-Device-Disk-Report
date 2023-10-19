@@ -146,8 +146,7 @@ $fullDiskReport = ($deviceIDs | ForEach-Object -Parallel {
     }
     $DeviceReport
     Write-Host "Got Device Disk Report For: $hostname"
-} -AsJob | Wait-Job | Receive-Job
-)
+} -AsJob | Wait-Job | Receive-Job)
 Write-Host "Got Disk Report"
 
 # Sorts Array into Alphabetical order
