@@ -38,29 +38,6 @@ $headers.Add("Accept", "application/json")
 $headers.Add("Authorization", "Bearer $access_token")
 Write-Host "Connected Ninja API"
 
-# Sets the Classes for the Device and Disk Reports
-class DeviceReport {
-    [string]$OrganizationName
-    [string]$LocationName
-    [string]$Hostname
-    [DiskReport[]]$DeviceDiskReport
-    [string]$DiskLetter
-    [string]$DiskCapacity
-    [string]$DiskFreeSpace
-    [string]$DiskPercentageUsed
-    [string]$NeedsInvestigation
-    [string]$TicketCopyPasta
-}
-
-class DiskReport{
-    [string]$DiskLetter
-    [float]$DiskCapacity
-    [float]$DiskFreeSpace
-    [string]$DiskPercentageUsed
-    [bool]$NeedsInvestigation
-    [string]$TicketCopyPasta
-}
-
 ## Main
 
 Write-Host "Import Microsoft.Graph Modules"
