@@ -77,13 +77,13 @@ V5+:
       }
   Create a TimerTrigger where the schedule uses standard Chrontab format on UTC time.
   Paste this script into the run.ps1, after:
-  # The 'IsPastDue' property is 'true' when the current function invocation is later than scheduled.
+  "# The 'IsPastDue' property is 'true' when the current function invocation is later than scheduled.
   if ($Timer.IsPastDue) {
       Write-Host "PowerShell timer is running late!"
-  }
+  }"
   And before:
-  # Write an information log with the current time.
-  Write-Host "PowerShell timer trigger function ran! TIME: $currentUTCtime"
+  "# Write an information log with the current time.
+  Write-Host "PowerShell timer trigger function ran! TIME: $currentUTCtime""
 
 
 
